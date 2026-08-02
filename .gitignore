@@ -2,3 +2,5 @@ venv
 *.pyc
 db.sqlite3
 /tiendalibre/__pycache__/
+/config/__pycache__/
+/tiendalibre/migrations/
