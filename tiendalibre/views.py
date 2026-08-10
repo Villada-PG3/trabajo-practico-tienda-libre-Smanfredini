@@ -9,10 +9,11 @@ def productos(request):
         "productos": lista_productos
     }
 
-    return render(request, "productos.html", contexto)
+    return render(request, "tiendalibre/productos.html", contexto)
+
 
 def home(request):
-    return HttpResponse("<h1>Bienvenido a la tienda en línea</h1>")
+    return render(request, "tiendalibre/home.html")
 
-def home1(request):
-    return render(request, "home.html")
+def Acerca_De_Mi(request):
+    return render(request, "tiendalibre/acerca_de_mi.html")

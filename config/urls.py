@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("tiendalibre.urls")),
     path("home/", include("tiendalibre.urls")),
     path("productos/", include("tiendalibre.urls")),
+    path("acerca_de_mi/", include("tiendalibre.urls"))
 ]
 
 if settings.DEBUG:
