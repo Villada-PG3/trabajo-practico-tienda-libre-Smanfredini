@@ -1,148 +1,73 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca de mí</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+{% block title %}
+Acerca de mí
+{% endblock %}
 
-        .contenedor {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+{% block content %}
 
-        h1 {
-            color: #333;
-            text-align: center;
-        }
+<div class="contenedor">
 
-        h2 {
-            color: #555;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-        }
+    <h1>Acerca de mí</h1>
 
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
+    <h2>Sobre mí</h2>
 
-        .dato {
-            margin: 15px 0;
-        }
+    <p>
+        Hola, mi nombre es Santino Manfredini.
+        Soy estudiante/desarrollador interesado en el mundo de la
+        programación y apasionado por aprobar la materia de Programación III.
+    </p>
 
-        .dato strong {
-            color: #333;
-        }
-
-        .tecnologias {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .tecnologia {
-            background-color: #e8e8e8;
-            padding: 8px 15px;
-            border-radius: 20px;
-        }
-
-        .volver {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            text-decoration: none;
-            color: white;
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 8px;
-        }
-
-        .volver:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="contenedor">
-
-        <h1>Acerca de mí</h1>
-
-        <h2>Sobre mí</h2>
-
-        <p>
-            Hola, mi nombre es Santino Manfredini.
-            Soy estudiante/desarrollador interesado en el mundo de la
-            programación y apasionado por aprobar la materia de Programacion III.
-        </p>
-
-        <div class="dato">
-            <strong>Edad:</strong> 17 años
-        </div>
-
-        <div class="dato">
-            <strong>Ciudad:</strong> Cordoba
-        </div>
-
-        <div class="dato">
-            <strong>Estudios:</strong> Instituto Tecnico Salesiano Villada
-        </div>
-
-
-        <h2>Sobre mi experiencia</h2>
-
-        <p>
-            Participe en el proyecto de la materia Programacion III, donde desarrollamos una tienda online utilizando Django y Python. Durante este proyecto, adquirí experiencia en el desarrollo web, manejo de bases de datos y diseño de interfaces de usuario.
-        </p>
-
-
-        <h2>Tecnologías que conozco</h2>
-
-        <div class="tecnologias">
-            <span class="tecnologia">Python</span>
-            <span class="tecnologia">Django</span>
-            <span class="tecnologia">HTML</span>
-            <span class="tecnologia">CSS</span>
-            <span class="tecnologia">SQL</span>
-            <span class="tecnologia">MMD</span>
-        </div>
-
-
-        <h2>Mis intereses</h2>
-
-        <p>
-            Me interesan las tecnologías web y el desarrollo de aplicaciones innovadoras.
-        </p>
-
-
-        <h2>Contacto</h2>
-
-        <p>
-            <strong>Email:</strong> S.Manfredni@itsv.edu.at
-        </p>
-
-        <p>
-            <strong>GitHub:</strong> https://github.com/Smanfredini
-        </p>
-
-
-        <a href="/home/" class="volver">Volver al inicio</a>
-
+    <div class="dato">
+        <strong>Edad:</strong> 17 años
     </div>
 
-</body>
-</html>
+    <div class="dato">
+        <strong>Ciudad:</strong> Córdoba
+    </div>
+
+    <div class="dato">
+        <strong>Estudios:</strong> Instituto Técnico Salesiano Villada
+    </div>
+
+    <h2>Sobre mi experiencia</h2>
+
+    <p>
+        Participé en el proyecto de la materia Programación III,
+        donde desarrollamos una tienda online utilizando Django y Python.
+        Durante este proyecto, adquirí experiencia en el desarrollo web,
+        manejo de bases de datos y diseño de interfaces de usuario.
+    </p>
+
+    <h2>Tecnologías que conozco</h2>
+
+    <div class="tecnologias">
+        <span class="tecnologia">Python</span>
+        <span class="tecnologia">Django</span>
+        <span class="tecnologia">HTML</span>
+        <span class="tecnologia">CSS</span>
+        <span class="tecnologia">SQL</span>
+        <span class="tecnologia">MMD</span>
+    </div>
+
+    <h2>Mis intereses</h2>
+
+    <p>
+        Me interesan las tecnologías web y el desarrollo de aplicaciones innovadoras.
+    </p>
+
+    <h2>Contacto</h2>
+
+    <p>
+        <strong>Email:</strong> S.Manfredni@itsv.edu.ar
+    </p>
+
+    <p>
+        <strong>GitHub:</strong> https://github.com/Smanfredini
+    </p>
+
+    <a href="/home/" class="volver">Volver al inicio</a>
+
+</div>
+
+{% endblock %}
