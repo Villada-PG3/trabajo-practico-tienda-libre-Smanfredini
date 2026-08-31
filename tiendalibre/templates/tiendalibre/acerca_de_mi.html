@@ -4,6 +4,79 @@
 Acerca de mí
 {% endblock %}
 
+    {% block extra-styles %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+    
+
+    .contenedor {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+
+    h2 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .dato {
+        margin: 15px 0;
+    }
+
+    .dato strong {
+        color: #333;
+    }
+
+    .tecnologias {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .tecnologia {
+        background-color: #e8e8e8;
+        padding: 8px 15px;
+        border-radius: 20px;
+    }
+
+    .volver {
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+        text-decoration: none;
+        color: white;
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    .volver:hover {
+        background-color: #555;
+    }
+    </style>
+    {% endblock %}
+
 {% block content %}
 
 <div class="contenedor">
@@ -65,8 +138,7 @@ Acerca de mí
     <p>
         <strong>GitHub:</strong> https://github.com/Smanfredini
     </p>
-
-    <a href="/home/" class="volver">Volver al inicio</a>
+    
 
 </div>
 

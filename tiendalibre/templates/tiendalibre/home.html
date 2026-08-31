@@ -1,31 +1,73 @@
 {% extends "base.html" %}
 
-{% block title %}
-Bienvenido a la tienda en línea
-{% endblock %}
-
 {% block content %}
 
-<h1 style="text-align: center;">
-    Bienvenido a la tienda en línea
+{% with usuario_logueado=True %}
+
+```
+<h1 class="text-center mb-4">
+    Bienvenido a TiendaLibre
 </h1>
 
-<p style="text-align: center;">
-    Explora nuestros productos y encuentra lo que necesitas.
-</p>
+{% if usuario_logueado == True %}
 
-<div style="text-align: center; margin-top: 30px;">
+    <h2 class="text-center mb-4">
+        Productos destacados
+    </h2>
 
-    <a href="/acerca_de_mi/">
-        Ver mi página
-    </a>
+    <div class="row g-4">
 
-    &nbsp;&nbsp;&nbsp;
+        {% for producto in productos %}
 
-    <a href="/productos/">
-        Ver mis productos
-    </a>
+            <div class="col-md-4">
 
-</div>
+                <article class="card h-100">
+                    <div class="card-body">
+
+                        <h3 class="h5">
+                            {{ producto.nombre }}
+                        </h3>
+
+                        <p>
+                            Marca: {{ producto.marca }}
+                        </p>
+
+                        <p>
+                            {{ producto.descripcion }}
+                        </p>
+
+                        <p>
+                            Precio: ${{ producto.precio }}
+                        </p>
+
+                        {% if producto.stock <= 5 %}
+                            <p class="text-danger fw-bold">
+                                Stock: {{ producto.stock }} unidades
+                            </p>
+                        {% else %}
+                            <p class="text-success">
+                                Stock: {{ producto.stock }} unidades
+                            </p>
+                        {% endif %}
+
+                    </div>
+                </article>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <p class="text-center text-danger">
+        Debes iniciar sesión para ver los productos.
+    </p>
+
+{% endif %}
+```
+
+{% endwith %}
 
 {% endblock %}

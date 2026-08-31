@@ -6,15 +6,11 @@ Productos
 
 {% block content %}
 
-<h1 style="text-align: center; font-size: 40px; margin-top: 100px; margin-bottom: 20px;">
+<h1 style="text-align: center; font-size: 40px; margin-top: 50px; margin-bottom: 100px;">
     Productos
 </h1>
 
-<div style="text-align: center; margin-top: 20px; margin-bottom: 100px;">
-    <a href="/home/" class="volver">
-        Volver al inicio
-    </a>
-</div>
+
 
 <table border="1" cellpadding="10" width="100%">
 
@@ -38,7 +34,13 @@ Productos
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.categoria }}</td>
             <td>{{ producto.descripcion }}</td>
-            <td>${{ producto.precio }}</td>
+            {% if producto.precio <= 50 %}
+                <td>${{ producto.precio|floatformat:2 }}</td>
+            {% elif producto.precio > 50 and producto.precio <= 99 %}
+                <td>unaffordable</td>
+            {% elif producto.precio > 99 %}
+                <td>WASHED</td>
+            {% endif %}
             <td>{{ producto.stock }}</td>
             <td>{{ producto.marca }}</td>
 
@@ -50,7 +52,7 @@ Productos
                         width="100"
                     >
                 {% else %}
-                    Sin imagen
+                    Sin imagen 
                 {% endif %}
             </td>
         </tr>
