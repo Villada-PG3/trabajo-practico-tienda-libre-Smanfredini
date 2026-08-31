@@ -4,27 +4,20 @@ from .models import Producto
 
 def productos(request):
     lista_productos = Producto.objects.all()
-
-    contexto = {
-        "productos": lista_productos
-    }
+    contexto = {"productos": lista_productos}
 
     return render(request, "tiendalibre/productos.html", contexto)
 
 def home(request):
     productos_destacados = [
-        {'nombre': 'Auriculares Sony WH-1000XM5', 'marca': 'Sony', 'descripcion': 'Cancelación de ruido y hasta 30 horas de batería.', 'precio': 349.99, 'stock': 8},
-        {'nombre': 'iPhone 15', 'marca': 'Apple', 'descripcion': 'Pantalla Super Retina XDR y cámara principal de 48 MP.', 'precio': 799.00, 'stock': 0},
-        {'nombre': 'Notebook Galaxy Book4', 'marca': 'Samsung', 'descripcion': 'Laptop liviana con procesador Intel Core y pantalla Full HD.', 'precio': 949.99, 'stock': 4},
-        {'nombre': 'Nintendo Switch OLED', 'marca': 'Nintendo', 'descripcion': 'Consola híbrida con pantalla OLED de 7 pulgadas.', 'precio': 349.99, 'stock': 0},
-        {'nombre': 'Cafetera Nespresso Essenza Mini', 'marca': 'Nespresso', 'descripcion': 'Café espresso en cápsulas con diseño compacto.', 'precio': 129.90, 'stock': 12},
-        {'nombre': 'Zapatillas Air Max 270', 'marca': 'Nike', 'descripcion': 'Amortiguación visible y comodidad para todos los días.', 'precio': 159.99, 'stock': 3},
+        {"nombre": "Remera", "precio": 15000,"stock": 10,},
+        {"nombre": "Pantalón", "precio": 25000,"stock": 4,},
+        {"nombre": "Zapatillas", "precio": 50000,"stock": 8,},
+        {"nombre": "Campera", "precio": 70000,"stock": 2,},
+        {"nombre": "Gorra", "precio": 10000,"stock": 15,},
+        { "nombre": "Mochila", "precio": 30000,"stock": 0,}
     ]
-
-    context = {
-        "productos": productos_destacados
-    }
-    return render(request, 'tiendalibre/home.html', context)
+    return render(request, "tiendalibre/home.html", {"productos_destacados": productos_destacados})
 
 def Acerca_De_Mi(request):
     return render(request, "tiendalibre/acerca_de_mi.html")

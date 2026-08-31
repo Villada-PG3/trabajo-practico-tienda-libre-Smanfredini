@@ -2,72 +2,44 @@
 
 {% block content %}
 
-{% with usuario_logueado=True %}
+<style>
+    .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 
-```
-<h1 class="text-center mb-4">
-    Bienvenido a TiendaLibre
-</h1>
+    .producto {
+        border: 1px solid #ccc;
+        padding: 20px;
+        text-align: center;
+    }
+</style>
 
-{% if usuario_logueado == True %}
+<h2>Productos destacados</h2>
 
-    <h2 class="text-center mb-4">
-        Productos destacados
-    </h2>
+<div class="productos-grid">
 
-    <div class="row g-4">
+    {% for producto in productos_destacados %}
 
-        {% for producto in productos %}
+        <div class="producto">
+            <h3>{{ producto.nombre }}</h3>
 
-            <div class="col-md-4">
+            <p>Precio: ${{ producto.precio|floatformat:2 }}</p>
 
-                <article class="card h-100">
-                    <div class="card-body">
+            <p>Stock: {{ producto.stock }}</p>
 
-                        <h3 class="h5">
-                            {{ producto.nombre }}
-                        </h3>
+            {% if producto.stock <= 5 %}
+                <p style="color: red;">¡Quedan pocas unidades!</p>
+            {% endif %}
+        </div>
 
-                        <p>
-                            Marca: {{ producto.marca }}
-                        </p>
+    {% empty %}
 
-                        <p>
-                            {{ producto.descripcion }}
-                        </p>
+        <p>No hay productos destacados.</p>
 
-                        <p>
-                            Precio: ${{ producto.precio }}
-                        </p>
+    {% endfor %}
 
-                        {% if producto.stock <= 5 %}
-                            <p class="text-danger fw-bold">
-                                Stock: {{ producto.stock }} unidades
-                            </p>
-                        {% else %}
-                            <p class="text-success">
-                                Stock: {{ producto.stock }} unidades
-                            </p>
-                        {% endif %}
-
-                    </div>
-                </article>
-
-            </div>
-
-        {% endfor %}
-
-    </div>
-
-{% else %}
-
-    <p class="text-center text-danger">
-        Debes iniciar sesión para ver los productos.
-    </p>
-
-{% endif %}
-```
-
-{% endwith %}
+</div>
 
 {% endblock %}
