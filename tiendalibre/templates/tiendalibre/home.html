@@ -25,7 +25,7 @@
         <div class="producto">
             <h3>{{ producto.nombre }}</h3>
 
-            <p>Precio: ${{ producto.precio|floatformat:2 }}</p>
+            <p>Precio: ${{ producto.precio|floatformat:2|default:"Sin precio" }}</p>
 
             <p>Stock: {{ producto.stock }}</p>
 
