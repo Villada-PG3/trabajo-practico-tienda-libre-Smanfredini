@@ -23,6 +23,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     marca = models.CharField(max_length=50, default="Marca Desconocida")
     imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
+    activo = models.BooleanField(default=True)
 
 
     def __str__(self):

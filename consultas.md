@@ -25,5 +25,4 @@
 >>> categoria.producto_set.all()
 >>> for producto in categoria.producto_set.all():print(producto.nombre)
 >>> Producto.objects.filter(categoria__nombre="Herramientas")
-
 >>> Producto.objects.create(nombre="Mouse Gamer",descripcion="Mouse gamer inalámbrico", precio=25000, stock=15 marca="Logitech")

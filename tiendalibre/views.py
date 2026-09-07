@@ -21,3 +21,7 @@ def home(request):
 
 def Acerca_De_Mi(request):
     return render(request, "tiendalibre/acerca_de_mi.html")
+
+def Catalogo(request):
+    productos = Producto.objects.filter(activo=True).order_by('-nombre')
+    return render(request, "tiendalibre/catalogo.html", {"productos": productos})
