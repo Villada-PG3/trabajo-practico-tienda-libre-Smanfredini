@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ producto.nombre }}{% endblock %}
+
+{% block content %}
+<a href="/catalogo/">← Volver al catálogo</a>
+<h1>{{ producto.nombre }}</h1>
+<p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+<p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+<p><strong>Precio:</strong> ${{ producto.precio|floatformat:2 }}</p>
+<p><strong>Stock:</strong> {{ producto.stock }}</p>
+<p><strong>Marca:</strong> {{ producto.marca }}</p>
+
+{% if producto.imagen %}
+    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="300">
+{% else %}
+    <p>Sin imagen</p>
+{% endif %}
+
+{% endblock %}
