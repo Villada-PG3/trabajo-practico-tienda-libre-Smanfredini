@@ -5,3 +5,5 @@ db.sqlite3
 /config/__pycache__/
 /tiendalibre/migrations/
 /productos
+media/
+staticfiles/

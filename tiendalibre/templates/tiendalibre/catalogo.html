@@ -1,19 +1,55 @@
 {% extends "base.html" %}
-{%block title%}Catálogo{%endblock%}
+
+{% block title %}Catálogo{% endblock %}
+
 {% block content %}
-    <h2>Catálogo de Productos</h2>
-    <div class="row">
-        {% for producto in productos|slice:3 %}
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{% url 'detalle_producto' producto.pk %}">{{ producto.nombre }}</a>
-                        <p class="card-text">{{ producto.descripcion }}</p>
-                        <p class="card-text">Precio: ${{ producto.precio }}</p>
-                        <p class="card-text">Stock: {{ producto.stock }}</p>
-                    </div>
+
+<h2>Catálogo de Productos</h2>
+
+<div class="row">
+
+    {% for producto in productos|slice:3 %}
+
+        <div class="col-md-4">
+
+            <div class="card">
+
+                {% if producto.imagen %}
+                    <img 
+                        src="{{ producto.imagen.url }}" 
+                        alt="{{ producto.nombre }}"
+                        width="300"
+                    >
+                {% else %}
+                    <p>Sin imagen</p>
+                {% endif %}
+
+                <div class="card-body">
+
+                    <a href="{% url 'detalle_producto' producto.pk %}">
+                        {{ producto.nombre }}
+                    </a>
+
+                    <p class="card-text">
+                        {{ producto.descripcion }}
+                    </p>
+
+                    <p class="card-text">
+                        Precio: ${{ producto.precio }}
+                    </p>
+
+                    <p class="card-text">
+                        Stock: {{ producto.stock }}
+                    </p>
+
                 </div>
+
             </div>
-        {% endfor %}
-    </div>
-{%endblock%}
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
