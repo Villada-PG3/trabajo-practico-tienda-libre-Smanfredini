@@ -16,30 +16,33 @@
     }
 </style>
 
-<h2>Productos destacados</h2>
+<h2>Productos recientes</h2>
 
-<div class="productos-grid">
+<div class="row">
+    {% for producto in productos_recientes %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                {% if producto.imagen %}
+                    <img
+                        src="{{ producto.imagen.url }}"
+                        class="card-img-top"
+                        alt="{{ producto.nombre }}"
+                    >
+                {% endif %}
 
-    {% for producto in productos_destacados %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.precio }}</p>
 
-        <div class="producto">
-            <h3>{{ producto.nombre }}</h3>
-
-            <p>Precio: ${{ producto.precio|floatformat:2|default:"Sin precio" }}</p>
-
-            <p>Stock: {{ producto.stock }}</p>
-
-            {% if producto.stock <= 5 %}
-                <p style="color: red;">¡Quedan pocas unidades!</p>
-            {% endif %}
+                    <a href="{% url 'detalle_producto' producto.pk %}">
+                        Ver producto
+                    </a>
+                </div>
+            </div>
         </div>
-
     {% empty %}
-
-        <p>No hay productos destacados.</p>
-
+        <p>Todavía no hay productos cargados.</p>
     {% endfor %}
-
 </div>
 
 {% endblock %}

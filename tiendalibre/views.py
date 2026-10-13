@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, TemplateView
 from .models import Producto
 
 def productos(request):
@@ -8,24 +9,25 @@ def productos(request):
 
     return render(request, "tiendalibre/productos.html", contexto)
 
-def home(request):
-    productos_destacados = [
-        {"nombre": "Remera", "precio": 15000,"stock": 10,},
-        {"nombre": "Pantalón", "precio": 25000,"stock": 4,},
-        {"nombre": "Zapatillas", "precio": 50000,"stock": 8,},
-        {"nombre": "Campera", "precio": 70000,"stock": 2,},
-        {"nombre": "Gorra", "precio": None ,"stock": 15,},
-        { "nombre": "Mochila", "precio": 30000,"stock": 0,}
-    ]
-    return render(request, "tiendalibre/home.html", {"productos_destacados": productos_destacados})
-
 def Acerca_De_Mi(request):
     return render(request, "tiendalibre/acerca_de_mi.html")
-
-def Catalogo(request):
-    productos = Producto.objects.filter(activo=True).order_by('-nombre')
-    return render(request, "tiendalibre/catalogo.html", {"productos": productos})
 
 def detalle_producto(request, pk):
     producto = get_object_or_404(Producto, pk=pk)
     return render(request, "tiendalibre/detalle.html", {"producto": producto})
+
+class HomeView(TemplateView):
+    template_name = "tiendalibre/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["productos_recientes"] = Producto.objects.order_by("id")[:6]
+
+        return context
+
+
+class CatalogoView(ListView):
+    model = Producto
+    template_name = "tiendalibre/catalogo.html"
+    context_object_name = "productos"
