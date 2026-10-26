@@ -14,16 +14,46 @@
             <a class="nav-link" href="/productos/">
                 Productos
             </a>
-            
+
             <a class="nav-link" href="/acerca_de_mi/">
                 Acerca de mí
             </a>
-            
+
             <a class="nav-link" href="/catalogo/">
                 Catálogo
             </a>
 
-        </div>
+            <div class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Categorías
+                </a>
 
+                <ul class="dropdown-menu">
+                    {% for categoria in categorias_menu %}
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'categoria' categoria.slug %}"
+                            >
+                                {{ categoria.nombre }}
+                            </a>
+                        </li>
+                    {% empty %}
+                        <li>
+                            <span class="dropdown-item">
+                                No hay categorías disponibles
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
     </div>
 </nav>

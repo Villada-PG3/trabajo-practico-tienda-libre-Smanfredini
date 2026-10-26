@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
-from .models import Producto
+from .models import Producto, Categoria
+from django.db.models import Q
 
 def productos(request):
     lista_productos = Producto.objects.all()
@@ -22,9 +23,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context["productos_recientes"] = Producto.objects.order_by("id")[:6]
-
         return context
 
 
@@ -33,3 +32,31 @@ class CatalogoView(ListView):
     template_name = "tiendalibre/catalogo.html"
     context_object_name = "productos"
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = Producto.objects.all()
+        busqueda = self.request.GET.get("q", "")
+        if busqueda:
+            queryset = queryset.filter(
+                Q(nombre__icontains=busqueda)
+                | Q(marca__icontains=busqueda)
+                | Q(descripcion__icontains=busqueda))
+        return queryset
+
+class CategoriaView(ListView):
+    model = Producto
+    template_name = "tiendalibre/categoria.html"
+    context_object_name = "productos"
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Producto.objects.filter(
+            categoria__slug=self.kwargs["slug"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["categoria"] = get_object_or_404(
+            Categoria,
+            slug=self.kwargs["slug"])
+        return context
