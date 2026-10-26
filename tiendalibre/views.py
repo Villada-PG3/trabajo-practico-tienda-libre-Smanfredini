@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 from .models import Producto
 
 def productos(request):
@@ -12,9 +12,10 @@ def productos(request):
 def Acerca_De_Mi(request):
     return render(request, "tiendalibre/acerca_de_mi.html")
 
-def detalle_producto(request, pk):
-    producto = get_object_or_404(Producto, pk=pk)
-    return render(request, "tiendalibre/detalle.html", {"producto": producto})
+class DetailView(DetailView):
+    model = Producto
+    template_name = "tiendalibre/detalle_producto.html"
+    context_object_name = "producto"
 
 class HomeView(TemplateView):
     template_name = "tiendalibre/home.html"
@@ -31,3 +32,4 @@ class CatalogoView(ListView):
     model = Producto
     template_name = "tiendalibre/catalogo.html"
     context_object_name = "productos"
+    paginate_by = 6
