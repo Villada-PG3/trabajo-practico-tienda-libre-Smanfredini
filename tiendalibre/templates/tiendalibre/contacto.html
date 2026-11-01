@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Contacto</h1>
+    <p>Dejanos tu consulta y nos comunicaremos con vos.</p>
+
+    {% if exito %}
+        <div class="alert alert-success">
+            ¡Mensaje enviado correctamente!
+        </div>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for campo in form %}
+            <div class="mb-3">
+                {{ campo.label_tag }}
+                {{ campo }}
+
+                {% if campo.errors %}
+                    <div class="text-danger">
+                        {% for error in campo.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">
+            Enviar mensaje
+        </button>
+    </form>
+</div>
+{% endblock %}

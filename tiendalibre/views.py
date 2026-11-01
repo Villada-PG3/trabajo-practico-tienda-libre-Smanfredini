@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 from .models import Producto, Categoria
 from django.db.models import Q
+from .forms import ContactoForm
 
 def productos(request):
     lista_productos = Producto.objects.all()
@@ -60,3 +61,26 @@ class CategoriaView(ListView):
             Categoria,
             slug=self.kwargs["slug"])
         return context
+
+def contacto(request):
+    if request.method == "POST":
+        form = ContactoForm(request.POST)
+
+        if form.is_valid():
+            nombre = form.cleaned_data["nombre"]
+            email = form.cleaned_data["email"]
+            asunto = form.cleaned_data["asunto"]
+            mensaje = form.cleaned_data["mensaje"]
+            telefono = form.cleaned_data["telefono"]
+
+            return render(request, "tiendalibre/contacto.html", {
+                "form": ContactoForm(),
+                "exito": True
+            })
+
+    else:
+        form = ContactoForm()
+
+    return render(request, "tiendalibre/contacto.html", {
+        "form": form
+    })
