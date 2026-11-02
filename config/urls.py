@@ -13,6 +13,7 @@ urlpatterns = [
     path("producto/<int:pk>/", include("tiendalibre.urls")),
     path("categoria/<slug:slug>/", include("tiendalibre.urls")),
     path("contacto/", include("tiendalibre.urls")),
+    path("producto/nuevo/", include("tiendalibre.urls"))
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,5 @@
 from django import forms
+from .models import Producto
 
 class ContactoForm(forms.Form):
     nombre = forms.CharField(
@@ -28,3 +29,17 @@ class ContactoForm(forms.Form):
     max_length=20,
     required=False
 )
+
+class ProductoForm(forms.ModelForm):
+
+    class Meta:
+        model = Producto
+        fields = [
+            "categoria",
+            "nombre",
+            "descripcion",
+            "precio",
+            "stock",
+            "marca",
+            "imagen",
+        ]

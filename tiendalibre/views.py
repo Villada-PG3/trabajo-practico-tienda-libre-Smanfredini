@@ -1,10 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 from .models import Producto, Categoria
 from django.db.models import Q
-from .forms import ContactoForm
-
+from .forms import ContactoForm, ProductoForm
 def productos(request):
     lista_productos = Producto.objects.all()
     contexto = {"productos": lista_productos}
@@ -82,5 +81,20 @@ def contacto(request):
         form = ContactoForm()
 
     return render(request, "tiendalibre/contacto.html", {
+        "form": form
+    })
+
+def producto_nuevo(request):
+    if request.method == "POST":
+        form = ProductoForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("catalogo")
+
+    else:
+        form = ProductoForm()
+
+    return render(request, "tiendalibre/producto_form.html", {
         "form": form
     })
